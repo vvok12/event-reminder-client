@@ -14,7 +14,7 @@
         timezone: string;
     }
 
-    const profileApiRoute = "/api/profile";
+    const profileApiRoute = "http://localhost:5054/api/profile";
 
 	onMount(async () => {
 		const res = await fetch(profileApiRoute, {
@@ -27,11 +27,14 @@
 
     async function handleSubmit(event: SubmitEvent & { currentTarget: EventTarget & HTMLFormElement}) {
         		event.preventDefault();
-		const data = new FormData(event.currentTarget);
+		const data = Object.fromEntries(new FormData(event.currentTarget));
 
 		const response = await fetch(event.currentTarget.action, {
 			method: 'POST',
-			body: data
+			body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
 		});
 
 		const result: ActionResult = deserialize(await response.text());
@@ -45,7 +48,7 @@
     }
 </script>
 
-<h1>User Profile</h1>
+<h1>Your Profile</h1>
 
 <form method="POST" action={profileApiRoute} onsubmit={handleSubmit}>
     <label for="id">ID:</label>
@@ -65,7 +68,7 @@
 
     <label for="timezone">Timezone:</label>
     <select name="timezone" value={data?.timezone}>
-        <option value="UTC">UTC</option>
+        <option value="00:00">UTC</option>
         <option value="+01:00">UTC+01:00</option>
         <option value="+02:00">UTC+02:00</option>
         <option value="+03:00">UTC+03:00</option>
