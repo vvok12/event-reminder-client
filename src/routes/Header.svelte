@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import Menu from './Menu.svelte';
 </script>
 
 <header>
@@ -21,6 +22,7 @@
 	</nav>
 
 	<div class="corner">
+		<Menu />
 	</div>
 </header>
 
