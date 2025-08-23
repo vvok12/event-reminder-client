@@ -16,7 +16,7 @@
     
     {#if isOpen}
         {#if currentPath === '/profile'}
-            <ProfileMenu />
+            <ProfileMenu closeMenu={() => isOpen = false} />
         {/if}
     {/if}
 </nav>

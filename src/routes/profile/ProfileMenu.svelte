@@ -1,8 +1,15 @@
 <script lang="ts">
-    function sendNotification(event: MouseEvent) {
-        event.preventDefault();
-        console.log('Notification sent!');
-    }
+  interface ProfileMenuProps {
+    closeMenu: () => void;
+  }
+
+  let { closeMenu }: ProfileMenuProps = $props();
+
+  function sendNotification(event: MouseEvent) {
+    event.preventDefault();
+    console.log('Notification sent!');
+    closeMenu();
+  }
 </script>
 
 <button class="menu-item" onclick={sendNotification}>
