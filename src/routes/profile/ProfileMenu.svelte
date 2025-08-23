@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { sendNotificationApiRoute } from "./types";
+
   interface ProfileMenuProps {
     closeMenu: () => void;
   }
@@ -7,8 +9,14 @@
 
   function sendNotification(event: MouseEvent) {
     event.preventDefault();
-    console.log('Notification sent!');
     closeMenu();
+
+    fetch(sendNotificationApiRoute, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 </script>
 

@@ -3,6 +3,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { ActionResult } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
+	import { profileApiRoute } from './types';
 	export let data: ProfileData;
     
     interface ProfileData {
@@ -14,8 +15,7 @@
         timezone: string;
     }
 
-    const profileApiRoute = "http://localhost:5054/api/profile";
-
+    
 	onMount(async () => {
 		const res = await fetch(profileApiRoute, {
 			headers: {
