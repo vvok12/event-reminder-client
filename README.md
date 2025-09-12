@@ -1,3 +1,8 @@
+# TODO
+1. put oauth2-proxy with github authentication ahead of Svelte
+2. transform a web page into PWA
+3. setup the Wireguard for PWA
+
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
