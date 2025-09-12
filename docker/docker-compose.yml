@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3000:3000"
+#    volumes:
+#      - .:/app
+    environment:
+      - NODE_ENV=development
+#    depends_on:
+#      - db
+#    restart_policy:
+#      condition: on-failure
+#  db:
+#    image: postgres
+#    environment:
+#      - POSTGRES_PASSWORD=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_DB=postgres
+#    volumes:
+#      - db-data:/var/lib/postgresql/data
+#    restart_policy:
+#      condition: on-failure
+
+volumes:
+  db-data:
