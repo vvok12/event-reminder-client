@@ -9,6 +9,8 @@ FROM node:22-alpine AS production
 COPY --from=build /app/build .
 COPY --from=build /app/package.json .
 COPY --from=build /app/package-lock.json .
+COPY --from=build /app/entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 RUN npm ci --omit dev
 EXPOSE 3000
-CMD ["node", "."]
+ENTRYPOINT ["./entrypoint.sh"]
