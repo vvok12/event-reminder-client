@@ -2,7 +2,8 @@
     import { page } from '$app/state';
 	import ProfileMenu from './profile/ProfileMenu.svelte';
 	import menuIcon from '$lib/images/menu-icon.png';
-	
+	const { data } = $props();
+
 	let isOpen = $state(false);
     const currentPath = $derived(page.url.pathname);
 </script>
@@ -16,7 +17,7 @@
     
     {#if isOpen}
         {#if currentPath === '/profile'}
-            <ProfileMenu closeMenu={() => isOpen = false} />
+            <ProfileMenu closeMenu={() => isOpen = false} userId={data?.userId}/>
         {/if}
     {/if}
 </nav>

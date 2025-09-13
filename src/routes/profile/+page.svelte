@@ -4,8 +4,19 @@
 	import type { ActionResult } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
 	import { profileApiRoute } from './types';
-	export let data: ProfileData;
-    
+
+	const { data: pageLoadData } = $props();
+	const { userId } = pageLoadData;
+	
+	let data: ProfileData = $state({
+		id: '',
+		username: '',
+		phone_number: '',
+		signal_group_id: '',
+		preferred_trigger_time: '12:00',
+		timezone: '00:00'
+	});
+
     interface ProfileData {
         id: string;
         username: string;
@@ -17,9 +28,11 @@
 
     
 	onMount(async () => {
-		const res = await fetch(profileApiRoute, {
+		console.log("fetching profile %s", userId);
+		const res = await fetch(profileApiRoute(userId), {
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				"Accept": "application/json"
 			}
 		});
 		data = await res.json();
@@ -50,7 +63,7 @@
 
 <h1>Your Profile</h1>
 
-<form method="POST" action={profileApiRoute} onsubmit={handleSubmit}>
+<form method="POST" action={profileApiRoute(userId)} onsubmit={handleSubmit}>
     <label for="id">ID:</label>
 	<input type="text" name="id" value={data?.id} readonly/>
 

@@ -3,15 +3,16 @@
 
   interface ProfileMenuProps {
     closeMenu: () => void;
+    userId: string;
   }
 
-  let { closeMenu }: ProfileMenuProps = $props();
+  const { closeMenu, userId }: ProfileMenuProps = $props();
 
   function sendNotification(event: MouseEvent) {
     event.preventDefault();
     closeMenu();
 
-    fetch(sendNotificationApiRoute, {
+    fetch(sendNotificationApiRoute(userId), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
