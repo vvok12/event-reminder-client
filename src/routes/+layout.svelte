@@ -2,11 +2,11 @@
 	import Header from './Header.svelte';
 	import '../app.css';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <div class="app">
-	<Header />
+	<Header data={data}/>
 
 	<main>
 		{@render children()}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Menu from './Menu.svelte';
+	const { data } = $props();
 </script>
 
 <header>
@@ -22,7 +23,7 @@
 	</nav>
 
 	<div class="corner">
-		<Menu />
+		<Menu data={data}/>
 	</div>
 </header>
 
