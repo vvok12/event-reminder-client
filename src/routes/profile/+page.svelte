@@ -114,38 +114,3 @@
 
     <input type="submit" value="Update Profile" />
 </form>
-
-
-<style>
-	form {
-		display: flex;
-		flex-direction: column;
-		align-items: left;
-		gap: 1rem;
-		padding: 1rem;
-		border: 1px solid var(--color-border);
-		border-radius: 8px;
-		background-color: var(--color-background);
-	}
-
-	label {
-		font-weight: bold;
-	}
-
-	input, select {
-		padding: 0.5rem;
-		border: 1px solid var(--color-border);
-		border-radius: 8px;
-		width: 100%;
-	}
-
-	input[type="submit"] {
-		margin-top: 1rem;
-		padding: 0.5rem 1rem;
-		background-color: var(--color-theme-2);
-		border: none;
-		border-radius: 8px;
-		cursor: pointer;
-        font-weight: bold;
-	}
-</style>
