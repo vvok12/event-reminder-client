@@ -13,10 +13,9 @@ const authMiddleware = async ( event: RequestEvent ) => {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	authMiddleware(event);
-
-	return paraglideMiddleware(event.request, ({ request, locale }) => {
-		event.request = request;
-
+	
+	return paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
+		event.request = localizedRequest;
 		return resolve(event, {
 			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale)
 		});
