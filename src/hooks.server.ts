@@ -13,7 +13,9 @@ const authMiddleware = async ( event: RequestEvent ) => {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	authMiddleware(event);
-	
+	return resolve(event);
+
+	// throws. commenting out for now
 	return paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
 		event.request = localizedRequest;
 		return resolve(event, {
