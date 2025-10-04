@@ -1,8 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$FE_DEVELOPMENT" = "true" ]; then
-  echo "Shutting down - plug in the VSCode build"
-  exit 0
+if [ -f .env ]; then
+  source .env
 fi
 
-node .
+if [ "$FE_DEVELOPMENT" = "true" ]; then
+  npm run dev -- --port 8081
+else
+  node .
+fi
