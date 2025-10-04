@@ -20,11 +20,8 @@
     <label for="trigger_time">Trigger Time:</label>
     <input type="time" name="trigger_time" value={data.triggerData?.trigger_time} />
 
-    {#if form?.message}
+    {#if !form?.success && form?.message}
         <p class="error">{form.message}</p>
-    {/if}
-    {#if form?.success}
-        <p class="success">{form.success}</p>
     {/if}
 
     <input type="submit" value="Update" />
