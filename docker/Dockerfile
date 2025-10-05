@@ -13,4 +13,4 @@ COPY --from=build /app/entrypoint.sh .
 RUN chmod +x ./entrypoint.sh
 RUN npm ci --omit dev
 EXPOSE 3000
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
