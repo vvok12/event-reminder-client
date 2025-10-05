@@ -6,6 +6,8 @@
 <h1>Triggers</h1>
 
 <form method="POST" action="?/save">
+    <input type="hidden" name="id" value={data.triggerData?.id} />  
+
     <label for="caldav_url">CalDav URL:</label>
 	<input type="url" name="caldav_url" value={data.triggerData?.caldav_url} />
 

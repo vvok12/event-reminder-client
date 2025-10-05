@@ -3,6 +3,7 @@ import { error } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 type TriggerData = {
+    id: string;
     caldav_url: string;
     send_to_group: boolean;
     group_id: string;
@@ -59,8 +60,16 @@ export const actions = {
 
         return { success: true, message: 'Trigger settings saved successfully.' };
     },
-    triggerNow: async ({ locals, fetch }) => {
-        const response = await fetch(triggerNowApiRoute(locals.userId), {
+
+    triggerNow: async ({ request, locals, fetch }) => {
+        const formData = await request.formData();
+        const triggerId = formData.get('id') as string;
+
+        if (!triggerId) {
+            return { success: false, message: 'Trigger ID is required.' };
+        }
+        
+        const response = await fetch(triggerNowApiRoute(locals.userId, triggerId), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
