@@ -6,7 +6,7 @@
 	import { profileApiRoute } from './types';
 
 	const { data: pageLoadData } = $props();
-	const { userId } = pageLoadData;
+	const { userId, timezones } = pageLoadData;
 	
 	let data: ProfileData = $state({
 		id: '',
@@ -14,7 +14,7 @@
 		phone_number: '',
 		signal_group_id: '',
 		preferred_trigger_time: '12:00',
-		timezone: '00:00'
+		timezone: 'Etc/UTC'
 	});
 
     interface ProfileData {
@@ -81,35 +81,9 @@
 
     <label for="timezone">Timezone:</label>
     <select name="timezone" value={data?.timezone}>
-        <option value="00:00">UTC</option>
-        <option value="+01:00">UTC+01:00</option>
-        <option value="+02:00">UTC+02:00</option>
-        <option value="+03:00">UTC+03:00</option>
-        <option value="+04:00">UTC+04:00</option>
-        <option value="+05:00">UTC+05:00</option>
-        <option value="+06:00">UTC+06:00</option>
-        <option value="+07:00">UTC+07:00</option>
-        <option value="+08:00">UTC+08:00</option>
-        <option value="+09:00">UTC+09:00</option>
-        <option value="+10:00">UTC+10:00</option>
-        <option value="+11:00">UTC+11:00</option>
-        <option value="+12:00">UTC+12:00</option>
-        <option value="+13:00">UTC+13:00</option>
-        <option value="+14:00">UTC+14:00</option>
-        <option value="-01:00">UTC-01:00</option>
-        <option value="-02:00">UTC-02:00</option>
-        <option value="-03:00">UTC-03:00</option>
-        <option value="-04:00">UTC-04:00</option>
-        <option value="-05:00">UTC-05:00</option>
-        <option value="-06:00">UTC-06:00</option>
-        <option value="-07:00">UTC-07:00</option>
-        <option value="-08:00">UTC-08:00</option>
-        <option value="-09:00">UTC-09:00</option>
-        <option value="-10:00">UTC-10:00</option>
-        <option value="-11:00">UTC-11:00</option>
-        <option value="-12:00">UTC-12:00</option>
-        <option value="-13:00">UTC-13:00</option>
-        <option value="-14:00">UTC-14:00</option>
+        {#each timezones as tz}
+            <option value={tz} selected={tz === data?.timezone}>{tz}</option>
+        {/each}
     </select>
 
     <input type="submit" value="Update Profile" />
