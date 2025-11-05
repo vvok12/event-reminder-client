@@ -12,8 +12,6 @@
 		id: '',
 		username: '',
 		phone_number: '',
-		signal_group_id: '',
-		preferred_trigger_time: '12:00',
 		timezone: 'Etc/UTC'
 	});
 
@@ -21,12 +19,9 @@
         id: string;
         username: string;
         phone_number?: string;
-        signal_group_id?: string;
-        preferred_trigger_time: string;
         timezone: string;
     }
 
-    
 	onMount(async () => {
 		console.log("fetching profile %s", userId);
 		const res = await fetch(profileApiRoute(userId), {
@@ -72,12 +67,6 @@
 
     <label for="phone_number">Phone number:</label>
 	<input type="phone" name="phone_number" value={data?.phone_number} />
-
-    <label for="signal_group_id">Signal group ID:</label>
-	<input type="text" name="signal_group_id" value={data?.signal_group_id} />
-
-    <label for="preferred_trigger_time">Preferred Trigger Time:</label>
-    <input type="time" name="preferred_trigger_time" value={data?.preferred_trigger_time} />
 
     <label for="timezone">Timezone:</label>
     <select name="timezone" value={data?.timezone}>
